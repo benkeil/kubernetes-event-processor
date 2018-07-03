@@ -1,3 +1,7 @@
+elastic:
+  hosts:
+    - http://elk01.i.sedorz.net:9200
+    - http://elk02.i.sedorz.net:9200
 filter:
   - field: involvedObject.kind
     regex: .*

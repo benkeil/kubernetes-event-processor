@@ -51,13 +51,19 @@ var (
 type (
 	// Config asd
 	Config struct {
-		Filter []Filter `json:"filter"`
+		Filter  []Filter `json:"filter"`
+		Elastic Elastic  `json:"elastic"`
 	}
 
 	// Filter asd
 	Filter struct {
 		Field string `json:"field"`
 		Regex string `json:"regex"`
+	}
+
+	// Elastic asd
+	Elastic struct {
+		Hosts []string `json:"hosts"`
 	}
 )
 
@@ -69,8 +75,8 @@ func init() {
 	if os.Getenv("ENVIRONMENT") == "" {
 		panic(fmt.Sprintf("cant find ENVIRONMENT environment variable"))
 	}
-	configureLogger()
 	config = loadConfig()
+	configureLogger()
 }
 
 func indexFunc() string {
@@ -78,7 +84,7 @@ func indexFunc() string {
 }
 
 func configureLogger() {
-	client, err := elastic.NewClient(elastic.SetURL("http://elk01.i.sedorz.net:9200", "http://elk02.i.sedorz.net:9200"))
+	client, err := elastic.NewClient(elastic.SetURL(config.Elastic.Hosts...))
 	if err != nil {
 		panic(fmt.Sprintf("cant init elasticsearch client: %v", err))
 	}

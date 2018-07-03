@@ -1,1 +1,2 @@
-vndor/
+vendor/
+kubernetes-event-processor

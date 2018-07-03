@@ -157,7 +157,7 @@ func syncFireFunc(entry *logrus.Entry, hook *ElasticHook, indexName string) erro
 		entry.Message,
 		entry.Data,
 		strings.ToUpper(level),
-		os.Getenv("ENVIRONMENT"),
+		os.Getenv("APP_ENVIRONMENT"),
 	}
 
 	_, err := hook.client.

@@ -41,7 +41,7 @@ const (
 
 var (
 	log         = logrus.New()
-	environment = os.Getenv("ENVIRONMENT")
+	environment = os.Getenv("APP_ENVIRONMENT")
 	config      Config
 )
 
@@ -69,8 +69,8 @@ func main() {
 }
 
 func init() {
-	if os.Getenv("ENVIRONMENT") == "" {
-		panic(fmt.Sprintf("cant find ENVIRONMENT environment variable"))
+	if os.Getenv("APP_ENVIRONMENT") == "" {
+		panic(fmt.Sprintf("cant find APP_ENVIRONMENT environment variable"))
 	}
 	config = loadConfig()
 	configureLogger()

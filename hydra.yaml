@@ -1,0 +1,6 @@
+image: 
+- dockerhub.i.sedorz.net/docker-common/kubernetes-event-processor
+versions:
+- tags: 
+  - semver
+  - latest

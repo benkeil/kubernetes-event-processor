@@ -4,5 +4,5 @@
 
 ```bash
 PUT _template/k8s-events
-{CONTENT OF esources/elasticsearch.template.json}
+{CONTENT OF resources/elasticsearch.template.json}
 ```

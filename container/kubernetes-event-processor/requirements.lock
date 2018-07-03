@@ -1,0 +1,6 @@
+dependencies:
+- name: common
+  repository: https://helm.i.sedorz.net
+  version: 2.5.0
+digest: sha256:4ab7af42b17bb1556b7938cce905be02fea6536a4711193c696612c89c1dcf66
+generated: 2018-07-03T15:28:33.043175663+02:00

@@ -1,0 +1,8 @@
+name: kubernetes-event-processor
+version: 1.0.0 # version of Charts.yaml
+description: Kubernetes event processor
+keywords:
+  - kubernetes
+  - event
+  - processor
+icon: http://git.i.sedorz.net/uploads/-/system/project/avatar/337/arrows.ditribition.share-128.png

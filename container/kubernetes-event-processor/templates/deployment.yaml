@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+{{ include "sedo.common.metadata.full" . }}
+spec:
+  selector:
+    matchLabels:
+{{ include "sedo.common.metadata.labels" . | indent  6 }}
+{{ include "sedo.common.deployment.replication" . | indent  2 }}
+  template:
+{{ include "sedo.common.metadata" . | indent  4 }}
+    spec:
+      serviceAccountName: {{ .Values.deployment.serviceAccountName }}
+      automountServiceAccountToken: true
+      containers:
+        - name: nginx
+          image: "{{ .Values.app.image.name }}:{{ .Values.appVersion }}"
+          imagePullPolicy: {{ .Values.app.image.pullPolicy }}
+          ports:
+            - name: metrics-app
+              containerPort: 80
+          resources:
+{{ toYaml .Values.app.resources | indent 12 }}
+          env:
+            - name: APP_ENVIRONMENT
+              value: {{ .Values.global.environment }}
+          volumeMounts:
+            - name: config-volume
+              mountPath: /var/opt/
+              subPath: config.yaml
+      restartPolicy: {{ .Values.deployment.restartPolicy }}
+      volumes:
+        - name: config-volume
+          configMap:
+            name: {{ include "sedo.common.metadata.name" . }}
+      {{- if .Values.global.imagePullSecret }}
+      imagePullSecrets:
+        - name: {{ .Values.global.imagePullSecret }}
+      {{- end }}

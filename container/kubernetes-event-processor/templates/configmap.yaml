@@ -1,0 +1,14 @@
+{{- template "sedo.common.configmap" (dict "context" . "merge_with_template" "kubernetes-event-processor.config.configmap") -}}
+
+{{- define "kubernetes-event-processor.config.configmap" -}}
+data:
+  config.yaml: |-
+    elastic:
+      hosts:
+        - http://elk01.i.sedorz.net:9200
+        - http://elk02.i.sedorz.net:9200
+        - http://elk04.i.sedorz.net:9200
+    filter:
+      - field: involvedObject.kind
+        regex: .*
+{{- end -}}

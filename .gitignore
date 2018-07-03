@@ -1,2 +1,2 @@
 vendor/
-kubernetes-event-processor
+./kubernetes-event-processor

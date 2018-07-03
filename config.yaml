@@ -1,0 +1,3 @@
+filter:
+  - field: involvedObject.kind
+    regex: .*

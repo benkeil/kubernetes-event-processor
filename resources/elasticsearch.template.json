@@ -1,0 +1,100 @@
+{
+  "index_patterns": ["*.k8s.events.*"],
+  "mappings": {
+    "doc": {
+      "properties": {
+        "environment": {
+          "type": "keyword"
+        },
+        "level": {
+          "type": "keyword"
+        },
+        "event": {
+          "properties": {
+            "count": {
+              "type": "integer"
+            },
+            "eventTime": {
+              "type": "date"
+            },
+            "firstTimestamp": {
+              "type": "date"
+            },
+            "involvedObject": {
+              "properties": {
+                "apiVersion": {
+                  "type": "keyword"
+                },
+                "fieldPath": {
+                  "type": "keyword"
+                },
+                "kind": {
+                  "type": "keyword"
+                },
+                "name": {
+                  "type": "keyword"
+                },
+                "namespace": {
+                  "type": "keyword"
+                },
+                "resourceVersion": {
+                  "type": "keyword"
+                },
+                "uid": {
+                  "type": "keyword"
+                }
+              }
+            },
+            "lastTimestamp": {
+              "type": "date"
+            },
+            "metadata": {
+              "properties": {
+                "creationTimestamp": {
+                  "type": "date"
+                },
+                "name": {
+                  "type": "keyword"
+                },
+                "namespace": {
+                  "type": "keyword"
+                },
+                "resourceVersion": {
+                  "type": "keyword"
+                },
+                "selfLink": {
+                  "type": "keyword"
+                },
+                "uid": {
+                  "type": "keyword"
+                }
+              }
+            },
+            "reason": {
+              "type": "keyword"
+            },
+            "reportingComponent": {
+              "type": "keyword"
+            },
+            "reportingInstance": {
+              "type": "keyword"
+            },
+            "source": {
+              "properties": {
+                "component": {
+                  "type": "keyword"
+                },
+                "host": {
+                  "type": "keyword"
+                }
+              }
+            },
+            "type": {
+              "type": "keyword"
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -11,4 +11,4 @@ data:
     filter:
       - field: involvedObject.kind
         regex: .*
-{{- end -}}
+{{ end }}

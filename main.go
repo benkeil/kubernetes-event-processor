@@ -94,7 +94,7 @@ func configureLogger() {
 }
 
 func run() {
-	client, err := kube.GetKubeClient("production-admin")
+	client, err := kube.GetKubeClient("")
 	if err != nil {
 		panic(fmt.Sprintf("cant get client: %v", err))
 	}

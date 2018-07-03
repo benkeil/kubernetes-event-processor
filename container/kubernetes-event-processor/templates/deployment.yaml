@@ -12,12 +12,9 @@ spec:
       serviceAccountName: {{ .Values.deployment.serviceAccountName }}
       automountServiceAccountToken: true
       containers:
-        - name: nginx
+        - name: processor
           image: "{{ .Values.app.image.name }}:{{ .Values.appVersion }}"
           imagePullPolicy: {{ .Values.app.image.pullPolicy }}
-          ports:
-            - name: metrics-app
-              containerPort: 80
           resources:
 {{ toYaml .Values.app.resources | indent 12 }}
           env:
@@ -25,7 +22,7 @@ spec:
               value: {{ .Values.global.environment }}
           volumeMounts:
             - name: config-volume
-              mountPath: /var/opt/
+              mountPath: /var/opt/config.yaml
               subPath: config.yaml
       restartPolicy: {{ .Values.deployment.restartPolicy }}
       volumes:

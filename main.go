@@ -15,7 +15,6 @@
 package main
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
@@ -37,8 +36,6 @@ import (
 )
 
 const (
-	empty      = ""
-	tab        = "  "
 	logVersion = "v1"
 )
 
@@ -150,19 +147,7 @@ func processEvent(event *v1.Event) {
 	in, _ := json.Marshal(event)
 	data := make(map[string]interface{})
 	json.Unmarshal(in, &data)
-	log.WithFields(data).Info(fmt.Sprintf("%s [%s] %s.%s: %s \n", event.LastTimestamp, event.Reason, event.InvolvedObject.Name, event.InvolvedObject.Namespace, event.Message))
-}
-
-func prettyJSON(data interface{}) (string, error) {
-	buffer := new(bytes.Buffer)
-	encoder := json.NewEncoder(buffer)
-	encoder.SetIndent(empty, tab)
-
-	err := encoder.Encode(data)
-	if err != nil {
-		return empty, err
-	}
-	return buffer.String(), nil
+	log.WithFields(data).Info(fmt.Sprintf("[%s] %s.%s: %s \n", event.Reason, event.InvolvedObject.Name, event.InvolvedObject.Namespace, event.Message))
 }
 
 func currentDir() string {
